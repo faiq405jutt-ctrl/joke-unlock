@@ -1,0 +1,54 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+}
+
+.container {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  background: white;
+  min-height: 100vh;
+}
+
+h1 {
+  text-align: center;
+}
+
+.points {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  background: #ff9800;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #e68900;
+}
+
+.joke-box {
+  margin-top: 20px;
+  padding: 15px;
+  background: #fafafa;
+  border-radius: 5px;
+  min-height: 80px;
+}
+
+.ad-box {
+  margin-top: 30px;
+  padding: 20px;
+  text-align: center;
+  border: 1px dashed #ccc;
+  color: #777;
+}
