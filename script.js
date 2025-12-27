@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     pointsEl.innerText = points.toFixed(1);
   }
 
-  // Show points initially
+  // Show points
   savePoints();
 
   // ✅ Daily visit reward
@@ -25,23 +25,22 @@ document.addEventListener("DOMContentLoaded", () => {
     savePoints();
   }
 
-  // ✅ Time-based reward (30 seconds)
+  // ✅ Time reward (30 sec)
   setTimeout(() => {
     points += 1;
     savePoints();
     alert("🎉 You earned 1 point for staying!");
   }, 30000);
 
-  // ✅ Unlock joke using real API
+  // ✅ Unlock Joke
   window.unlockJoke = async function () {
     if (points < 1) {
-      alert("❌ Not enough points. Come back tomorrow!");
+      alert("❌ Not enough points!");
       return;
     }
 
     points -= 1;
     savePoints();
-
     jokeBox.innerText = "😂 Loading joke...";
 
     try {
@@ -56,9 +55,50 @@ document.addEventListener("DOMContentLoaded", () => {
       points += 0.5;
       savePoints();
 
-    } catch (error) {
-      jokeBox.innerText = "⚠️ Failed to load joke. Try again.";
+    } catch {
+      jokeBox.innerText = "⚠️ Failed to load joke.";
     }
+  };
+
+  // ✅ PRINT JOKE (THIS IS THE STEP YOU LIKED)
+  window.printJoke = function () {
+    const jokeText = jokeBox.innerText;
+
+    if (!jokeText || jokeText.includes("Loading")) {
+      alert("❌ Unlock a joke first!");
+      return;
+    }
+
+    if (points < 1) {
+      alert("❌ Not enough points to print!");
+      return;
+    }
+
+    points -= 1;
+    savePoints();
+
+    const printWindow = window.open("", "", "width=600,height=400");
+    printWindow.document.write(`
+      <html>
+        <head>
+          <title>Print Joke</title>
+          <style>
+            body {
+              font-family: Arial;
+              padding: 20px;
+              font-size: 18px;
+            }
+          </style>
+        </head>
+        <body>
+          <h2>😂 Your Joke</h2>
+          <p>${jokeText}</p>
+        </body>
+      </html>
+    `);
+
+    printWindow.document.close();
+    printWindow.print();
   };
 
 });
